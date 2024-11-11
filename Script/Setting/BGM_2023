@@ -1,0 +1,129 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
+public class BGM_2023 : MonoBehaviour
+{
+    public Slider backVolume;
+    public AudioSource audio1;
+    public AudioSource audio2;
+    public AudioSource audio3;
+
+    public Slider backVolume_1;
+
+
+    //public Text BGM_Sound;
+    public float backVol = 0.5001f;//원래 private였음
+
+
+
+    //public Only_Line QuestObject;
+    void OnDisable()
+    {
+        //backVolume.value = backVol; //원래 이거였음
+        backVol = PlayerPrefs.GetFloat("backvol", 0.5001f);
+
+
+
+        backVolume.value = backVol;
+        audio1.volume = backVolume.value;
+        audio2.volume = backVolume.value;
+        audio3.volume = backVolume.value;
+
+        Debug.Log("스타트에 위치한 배경음(OnDisable_GetFloat) 크기는" + backVol + "다.");
+
+        /*audio3.volume = backVolume.value;
+        audio4.volume = backVolume.value;
+        audio5.volume = backVolume.value;
+        audio6.volume = backVolume.value;*/
+
+        //새로 만듦 08.12
+        backVolume_1.value = audio1.volume;
+        backVolume_1.value = audio2.volume;
+        backVolume_1.value = audio3.volume;
+    }
+
+    void OnEnable()
+    {
+        backVolume.value = backVol;//원래 
+
+        backVol = PlayerPrefs.GetFloat("backvol", 0.5001f);
+
+
+
+        //backVolume.value = backVol;
+        audio1.volume = backVolume.value;
+        audio2.volume = backVolume.value;
+        audio3.volume = backVolume.value;
+
+        Debug.Log("스타트에 위치한 배경음(OnEnable_GetFloat) 크기는" + backVol + "다.");
+
+        //새로 만듦 08.12
+        backVolume_1.value = audio1.volume;
+        backVolume_1.value = audio2.volume;
+        backVolume_1.value = audio3.volume;
+
+    }
+
+    void Start()
+    {
+        backVolume.value = backVol;
+
+        //새로 추가해봄 08.12
+        backVolume_1.value = backVol;
+
+        //B_Sound = PlayerPrefs.GetFloat("B_Volume", 1.0f);
+        backVol = PlayerPrefs.GetFloat("backvol", 0.5001f);
+        //BGM_Sound = GetComponent<Text>();
+
+        //저장했던 값을 그대로 audio에 전달하여 껏다 켜도 슬라이더 값이 초기화 되지 않도록 작성
+        //backvol이라는 키의 값이 비어있을 때 1의 값을 가져오라는 것을 의미.
+        //값이 비어있으면 0이 들어가기 때문에 사운드가 들리지 않는 것을 방지하기 위해 1로 넣음
+
+
+        audio1.volume = backVolume.value;
+        audio2.volume = backVolume.value;
+        audio3.volume = backVolume.value;
+ 
+        Debug.Log("스타트에 위치한 배경음(GetFloat) 크기는" + backVol + "다.");
+
+        //새로 만듦 08.12
+        backVolume_1.value = audio1.volume;
+        backVolume_1.value = audio2.volume;
+        backVolume_1.value = audio3.volume;
+
+    }
+
+    void Update()
+    {
+        SoundSlider();
+    }
+
+    public void SoundSlider()//슬라이더 기능이 될 함수
+    {
+        backVol = backVolume.value;
+        audio1.volume = backVolume.value;
+        audio2.volume = backVolume.value;
+        audio3.volume = backVolume.value;
+
+        //새로 만듦 08.12
+        backVol = backVolume_1.value;
+        backVolume_1.value = audio1.volume;
+        backVolume_1.value = audio2.volume;
+        backVolume_1.value = audio3.volume;
+
+        PlayerPrefs.SetFloat("backvol", backVol);
+        //BGM_Sound.text = backVol.ToString();
+    
+
+        PlayerPrefs.Save();
+
+        Debug.Log("배경음악 사운드 크기는(SetFloat)" + backVol + "다.");
+
+
+    }
+
+}
