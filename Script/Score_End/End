@@ -1,0 +1,58 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
+
+
+public class END : MonoBehaviour
+{
+
+    /*public ParticleSystem particlePrefab; // ParticleSystem 프리팹
+    public Transform[] spawnPositions;    // ParticleSystem을 배치할 위치들
+
+    private void Start()
+    {
+        // 모든 spawnPositions 배열 요소에 대해 ParticleSystem 생성 및 실행
+        foreach (Transform spawnPosition in spawnPositions)
+        {
+            SpawnAndPlayParticleSystem(spawnPosition.position);
+        }
+    }
+
+    private void SpawnAndPlayParticleSystem(Vector3 position)
+    {
+        // ParticleSystem 프리팹을 복제하여 생성
+        ParticleSystem newParticleSystem = Instantiate(particlePrefab, position, Quaternion.identity);
+
+        // 생성한 ParticleSystem을 실행
+        newParticleSystem.Play();
+    }*/
+
+    public ParticleSystem particleSystem1;
+    public ParticleSystem particleSystem2;
+
+    public void Start()
+    {
+        particleSystem1.Stop();
+        particleSystem2.Stop();
+    }
+
+    public void StartParticles()
+    {
+        particleSystem1.Play();
+        particleSystem2.Play();
+    }
+
+    public void StopParticles()
+    {
+        particleSystem1.Stop();
+        particleSystem2.Stop();
+    }
+}
+
+
+
+
+
+
